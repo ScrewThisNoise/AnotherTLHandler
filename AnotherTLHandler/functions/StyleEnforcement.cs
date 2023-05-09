@@ -82,10 +82,9 @@ namespace AnotherTLHandler.functions
                 "(Limited to the first touch during an H-scene)",
                 "(First Insertion)"
             };
-
+            
             replacer = replacer.Replace("…", "...");
-            replacer = replacer.Replace("....", "...");
-            replacer = replacer.Replace("......", "...");
+
 
             replacer = Regex.Replace(replacer, @"(^|[^\.])(\.{3})+(\.{1,2})([^\.]|$)", "$1$2$4");
             replacer = Regex.Replace(replacer, @"(^|[^\.])(\.{2})([^\.]|$)", "$1$2.$3");
