@@ -29,7 +29,8 @@ namespace AnotherTLHandler.functions
 
                     try
                     {
-                        string temp = RunFix(LineSplit[1]);
+                        string temp = CheckTag(line);
+                        temp = RunFix(temp);
                         result = $"{LineSplit[0]}={temp}";
                         if (translationClean)
                         {
@@ -96,8 +97,32 @@ namespace AnotherTLHandler.functions
             {
                 replacer = replacer.Replace(entry, "");
             }
+            
 
             return replacer.TrimEnd();
+        }
+
+        private static string CheckTag(string line)
+        {
+            string returner = String.Empty;
+            string[] LineSplit = line.Split('=');
+
+            if (LineSplit[0].Contains("[H]") && !LineSplit[0].Contains("[H名]"))
+            {
+                LineSplit[1] = LineSplit[1].Replace("[H名]", "[H]");
+            }
+            if (LineSplit[0].Contains("[H名]") && !LineSplit[0].Contains("[H]"))
+            {
+                LineSplit[1] = LineSplit[1].Replace("[H]", "[H名]");
+            }
+            if (LineSplit[0].Contains("[H名]") && LineSplit[0].Contains("[H]"))
+            {
+                Console.WriteLine(line);
+            }
+
+            returner = $@"{LineSplit[1]}";
+
+            return returner;
         }
     }
 }
