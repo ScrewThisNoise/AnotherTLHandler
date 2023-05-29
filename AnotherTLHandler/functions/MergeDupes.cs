@@ -74,6 +74,13 @@ namespace AnotherTLHandler.functions
                         }
                         hit = true;
                     }
+
+                    if (!hit)
+                    {
+                        newLines.Add(oldLine);
+                        linenum++;
+                        counter++;
+                    }
                 }
                 //fileWriter.Close();
                 File.WriteAllLines(currentFile, newLines.ToArray());
